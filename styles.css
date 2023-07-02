@@ -1,0 +1,17 @@
+#grid {
+    width: 500px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    flex: 1 0 0;
+    display: flex;
+}
+
+.square {
+    flex: 1 1 0;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
