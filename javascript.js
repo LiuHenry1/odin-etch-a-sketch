@@ -21,4 +21,17 @@ function createSquare() {
     return square;
 }
 
+function color(e) {
+    const square = e.currentTarget;
+    square.classList.add('colored');
+}
+
+function setUpEventListeners() {
+    const squares = document.querySelectorAll('.square');
+    squares.forEach(square => {
+        square.addEventListener('mouseover', color)
+    })
+}
+
 drawGrid();
+setUpEventListeners();
