@@ -1,6 +1,11 @@
+.container {
+    display: flex;
+    justify-content: center;
+}
+
 #grid {
-    width: 500px;
-    height: 500px;
+    width: 960px;
+    height: 960px;
     display: flex;
     flex-direction: column;
 }
