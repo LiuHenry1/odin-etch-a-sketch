@@ -1,9 +1,14 @@
 setup();
 
 function setup() {
-    drawGrid();
-    setupGridEventListeners();
+    setupGrid();
     setupOptionEventListeners();
+}
+
+function setupGrid(size = 16) {
+    displaySize(size);
+    drawGrid(size);
+    setupGridEventListeners();
 }
 
 function resetGrid() {
@@ -13,12 +18,13 @@ function resetGrid() {
 
 function resizeGrid(e) {
     const size = e.currentTarget.value;
+    
     resetGrid();
-    drawGrid(size);
-    setupGridEventListeners();
+    setupGrid(size);
+    displaySize(size);
 }
 
-function drawGrid(size = 16) {
+function drawGrid(size) {
     const grid = document.querySelector('#grid');
 
     for (let row = 0; row < size; row++) {
@@ -42,6 +48,11 @@ function setupGridEventListeners() {
 function setupOptionEventListeners() {
     const sizeSlider = document.querySelector('#size-slider');
     sizeSlider.addEventListener('change', resizeGrid);
+}
+
+function displaySize(size) {
+    const sizeText = document.querySelector(['label[for="size-slider"']);
+    sizeText.textContent = `Size: ${size}`;
 }
 
 function createSquare() {
