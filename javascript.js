@@ -1,3 +1,11 @@
+setup();
+
+function setup() {
+    drawGrid();
+    setupGridEventListeners();
+    setupOptionEventListeners();
+}
+
 function resetGrid() {
     const grid = document.querySelector('#grid');
     grid.innerHTML = '';
@@ -24,18 +32,6 @@ function drawGrid(size = 16) {
     }
 }
 
-function createSquare() {
-    const square = document.createElement('div');
-    square.classList.add('square');
-
-    return square;
-}
-
-function color(e) {
-    const square = e.currentTarget;
-    square.classList.add('colored');
-}
-
 function setupGridEventListeners() {
     const squares = document.querySelectorAll('.square');
     squares.forEach(square => {
@@ -48,10 +44,14 @@ function setupOptionEventListeners() {
     sizeSlider.addEventListener('change', resizeGrid);
 }
 
-function setup() {
-    drawGrid();
-    setupGridEventListeners();
-    setupOptionEventListeners();
+function createSquare() {
+    const square = document.createElement('div');
+    square.classList.add('square');
+
+    return square;
 }
 
-setup();
+function color(e) {
+    const square = e.currentTarget;
+    square.classList.add('colored');
+}
