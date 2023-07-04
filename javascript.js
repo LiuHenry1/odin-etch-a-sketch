@@ -1,16 +1,26 @@
-const DEFAULT_SIZE = 16;
+function resetGrid() {
+    const grid = document.querySelector('#grid');
+    grid.innerHTML = '';
+}
 
-function drawGrid() {
+function resizeGrid(e) {
+    const size = e.currentTarget.value;
+    resetGrid();
+    drawGrid(size);
+    setupGridEventListeners();
+}
+
+function drawGrid(size = 16) {
     const grid = document.querySelector('#grid');
 
-    for (let row = 0; row < DEFAULT_SIZE; row++) {
+    for (let row = 0; row < size; row++) {
         let row = document.createElement('div');
         row.classList.add('row');
-            for (let col = 0; col < DEFAULT_SIZE; col++) {
+            for (let col = 0; col < size; col++) {
                 let square = createSquare();
                 row.appendChild(square);
             }
-            grid.appendChild(row);
+        grid.appendChild(row);
     }
 }
 
@@ -26,12 +36,22 @@ function color(e) {
     square.classList.add('colored');
 }
 
-function setUpEventListeners() {
+function setupGridEventListeners() {
     const squares = document.querySelectorAll('.square');
     squares.forEach(square => {
         square.addEventListener('mouseover', color)
     })
 }
 
-drawGrid();
-setUpEventListeners();
+function setupOptionEventListeners() {
+    const sizeSlider = document.querySelector('#size-slider');
+    sizeSlider.addEventListener('change', resizeGrid);
+}
+
+function setup() {
+    drawGrid();
+    setupGridEventListeners();
+    setupOptionEventListeners();
+}
+
+setup();
