@@ -3,6 +3,13 @@
     justify-content: center;
 }
 
+#panel {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    padding: 30px;
+}
+
 #grid {
     width: 960px;
     height: 960px;
