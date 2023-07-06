@@ -10,6 +10,15 @@
     padding: 30px;
 }
 
+#color-toggle {
+    width: 200px;
+    height: 24px;
+    text-align: center;
+    border: 3px solid rgb(36, 154, 190);
+    border-radius: 16px;
+    background-color: #e4cdcdee;
+}
+
 #grid {
     width: 960px;
     height: 960px;
