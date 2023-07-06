@@ -1,4 +1,5 @@
 let penDown;
+let eraserDown;
 
 setup();
 
@@ -7,6 +8,7 @@ setup();
  */
 function setup() {
     penDown = false;
+    eraserDown = false;
 
     setupGrid();
     setupOptionEventListeners();
@@ -79,6 +81,9 @@ function setupOptionEventListeners() {
 
     const colorToggle = document.querySelector('#color-toggle');
     colorToggle.addEventListener('click', togglePen);
+
+    const eraserToggle = document.querySelector('#eraser-toggle');
+    eraserToggle.addEventListener('click', toggleEraser);
 }
 
 /**
@@ -101,18 +106,34 @@ function createSquare() {
     return square;
 }
 
+/**
+ * Toggle pen on or off depending on current state
+ */
 function togglePen() {
     penDown = !penDown;
+    eraserDown = false;
 }
 
 /**
- * Change the color of the square that the moused hovered over
+ * Toggle eraser on or off depending on current state
+ */
+function toggleEraser() {
+    eraserDown = !eraserDown;
+    penDown = false;
+}
+
+/**
+ * Change the square depending on the toggles
+ * If pen is down, color it black
+ * If eraser is down, remove the color
+ * Otherwise nothing
  * @param {Event} e - the event that triggers this function
  */
 function color(e) {
-    if (!penDown)
-        return;
-
     const square = e.currentTarget;
-    square.classList.add('colored');
+    if (penDown) {
+        square.classList.add('colored');
+    } else if (eraserDown) {
+        square.classList.remove('colored');
+    }
 }

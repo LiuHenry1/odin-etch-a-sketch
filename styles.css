@@ -8,9 +8,16 @@
     flex-direction: column;
     border: 1px solid black;
     padding: 30px;
+    gap: 20px;
 }
 
-#color-toggle {
+#toggles {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#toggles button{
     width: 200px;
     height: 24px;
     text-align: center;
