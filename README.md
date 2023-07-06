@@ -1,5 +1,5 @@
 # odin-etch-a-sketch
-The Odin Project: [Etch-a-Sketch] (https://www.theodinproject.com/lessons/foundations-etch-a-sketch)
+The Odin Project: [Etch-a-Sketch](https://www.theodinproject.com/lessons/foundations-etch-a-sketch)
 
 ## Overview
 The fourth project in The Odin Project curriculum. Topics covered:
