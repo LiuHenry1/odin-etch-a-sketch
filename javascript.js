@@ -1,5 +1,11 @@
-let penDown;
-let eraserDown;
+const DEFAULT_SIZE = 16;
+const MODES = {
+    None: 'none',
+    Color: 'color',
+    Erase: 'erase'
+};
+
+let currentMode;
 
 setup();
 
@@ -7,8 +13,7 @@ setup();
  * Set up environment including the option panel, grid, variables, and event listeners.
  */
 function setup() {
-    penDown = false;
-    eraserDown = false;
+    currentMode = MODES.None;
 
     setupGrid();
     setupOptionEventListeners();
@@ -36,7 +41,7 @@ function resetGrid() {
  * Resize the grid when size-slider changes and change the display of size-slider text
  */
 function resizeGrid() {
-    const size = document.querySelector('#grid').getAttribute('value');
+    const size =  this.value;
     
     resetGrid();
     setupGrid(size);
@@ -66,7 +71,7 @@ function drawGrid(size) {
 function setupGridEventListeners() {
     const squares = document.querySelectorAll('.square');
     squares.forEach(square => {
-        square.addEventListener('mouseover', color)
+        square.addEventListener('mouseover', color);
     })
 }
 
@@ -108,12 +113,11 @@ function createSquare() {
  * Toggle pen on or off depending on current state
  */
 function togglePen() {
-    penDown = !penDown;
-    eraserDown = false;
-
     resetToggleSelections();
 
-    if (penDown) {
+    currentMode = (currentMode != MODES.Color) ? MODES.Color : MODES.None;
+
+    if (currentMode == MODES.Color) {
         const colorToggle = document.querySelector('#color-toggle');
         displayToggleSelection(colorToggle);
     } 
@@ -123,21 +127,27 @@ function togglePen() {
  * Toggle eraser on or off depending on current state
  */
 function toggleEraser() {
-    eraserDown = !eraserDown;
-    penDown = false;
-
     resetToggleSelections();
 
-    if (eraserDown) {
+    currentMode = (currentMode != MODES.Erase) ? MODES.Erase : MODES.None;
+
+    if (currentMode == MODES.Erase) {
         const eraserToggle = document.querySelector('#eraser-toggle');
         displayToggleSelection(eraserToggle);
     }
 }
 
+/**
+ * Indicates which toggle is selected in the UI
+ * @param {*} toggle the selected toggle
+ */
 function displayToggleSelection(toggle) {
     toggle.classList.add('selected-toggle');
 }
 
+/**
+ * Resets toggle visualization in UI
+ */
 function resetToggleSelections() {
     const toggles = document.querySelectorAll('#toggles button');
     toggles.forEach(toggle => {
@@ -153,9 +163,12 @@ function resetToggleSelections() {
  */
 function color() {
     const square = this;
-    if (penDown) {
-        square.classList.add('colored');
-    } else if (eraserDown) {
-        square.classList.remove('colored');
+    switch (currentMode) {
+        case MODES.Color:
+            square.classList.add('colored');
+            break;
+        case MODES.Erase:
+            square.classList.remove('colored');
+            break;
     }
 }
