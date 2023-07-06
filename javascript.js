@@ -4,7 +4,7 @@ let eraserDown;
 setup();
 
 /**
- * Set up environment including the option panel, grid, and event listeners.
+ * Set up environment including the option panel, grid, variables, and event listeners.
  */
 function setup() {
     penDown = false;
@@ -112,6 +112,13 @@ function createSquare() {
 function togglePen() {
     penDown = !penDown;
     eraserDown = false;
+
+    resetToggleSelections();
+
+    if (penDown) {
+        const colorToggle = document.querySelector('#color-toggle');
+        displayToggleSelection(colorToggle);
+    } 
 }
 
 /**
@@ -120,6 +127,24 @@ function togglePen() {
 function toggleEraser() {
     eraserDown = !eraserDown;
     penDown = false;
+
+    resetToggleSelections();
+
+    if (eraserDown) {
+        const eraserToggle = document.querySelector('#eraser-toggle');
+        displayToggleSelection(eraserToggle);
+    }
+}
+
+function displayToggleSelection(toggle) {
+    toggle.classList.add('selected-toggle');
+}
+
+function resetToggleSelections() {
+    const toggles = document.querySelectorAll('#toggles button');
+    toggles.forEach(toggle => {
+        toggle.classList.remove('selected-toggle');
+    })
 }
 
 /**

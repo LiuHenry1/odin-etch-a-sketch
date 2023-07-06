@@ -23,7 +23,6 @@
     text-align: center;
     border: 3px solid rgb(36, 154, 190);
     border-radius: 16px;
-    background-color: #e4cdcdee;
 }
 
 #grid {
@@ -46,4 +45,9 @@
 
 .colored {
     background-color: black;;
+}
+
+.selected-toggle {
+    color: white;
+    background-color: black;
 }
