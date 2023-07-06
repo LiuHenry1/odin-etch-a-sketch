@@ -5,7 +5,7 @@ The Odin Project: [Etch-a-Sketch](https://www.theodinproject.com/lessons/foundat
 The fourth project in The Odin Project curriculum. Topics covered:
 <ul>
   <li>DOM</li>
-  <li>More practice on Javaascript</li>
+  <li>More practice on Javascript</li>
   <li>Basic HTML and CSS</li>
   <li>Git</li>
 </ul>
