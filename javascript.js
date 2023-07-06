@@ -34,14 +34,12 @@ function resetGrid() {
 
 /**
  * Resize the grid when size-slider changes and change the display of size-slider text
- * @param {*} e 
  */
-function resizeGrid(e) {
-    const size = e.currentTarget.value;
+function resizeGrid() {
+    const size = document.querySelector('#grid').getAttribute('value');
     
     resetGrid();
     setupGrid(size);
-    displaySize(size);
 }
 
 /**
@@ -152,10 +150,9 @@ function resetToggleSelections() {
  * If pen is down, color it black
  * If eraser is down, remove the color
  * Otherwise nothing
- * @param {Event} e - the event that triggers this function
  */
-function color(e) {
-    const square = e.currentTarget;
+function color() {
+    const square = this;
     if (penDown) {
         square.classList.add('colored');
     } else if (eraserDown) {
