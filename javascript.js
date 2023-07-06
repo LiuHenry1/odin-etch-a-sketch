@@ -1,9 +1,13 @@
+let penDown;
+
 setup();
 
 /**
  * Set up environment including the option panel, grid, and event listeners.
  */
 function setup() {
+    penDown = false;
+
     setupGrid();
     setupOptionEventListeners();
 }
@@ -72,6 +76,9 @@ function setupGridEventListeners() {
 function setupOptionEventListeners() {
     const sizeSlider = document.querySelector('#size-slider');
     sizeSlider.addEventListener('change', resizeGrid);
+
+    const colorToggle = document.querySelector('#color-toggle');
+    colorToggle.addEventListener('click', togglePen);
 }
 
 /**
@@ -94,11 +101,18 @@ function createSquare() {
     return square;
 }
 
+function togglePen() {
+    penDown = !penDown;
+}
+
 /**
  * Change the color of the square that the moused hovered over
  * @param {Event} e - the event that triggers this function
  */
 function color(e) {
+    if (!penDown)
+        return;
+
     const square = e.currentTarget;
     square.classList.add('colored');
 }
