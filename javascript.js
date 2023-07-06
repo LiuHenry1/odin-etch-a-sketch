@@ -6,6 +6,7 @@ const MODES = {
 };
 
 let currentMode;
+let mouseDown;
 
 setup();
 
@@ -14,9 +15,11 @@ setup();
  */
 function setup() {
     currentMode = MODES.None;
+    mouseDown = false;
 
     setupGrid();
     setupOptionEventListeners();
+    setupMouseEventListeners();
 }
 
 /**
@@ -71,6 +74,7 @@ function drawGrid(size) {
 function setupGridEventListeners() {
     const squares = document.querySelectorAll('.square');
     squares.forEach(square => {
+        square.addEventListener('mousedown', color);
         square.addEventListener('mouseover', color);
     })
 }
@@ -87,6 +91,11 @@ function setupOptionEventListeners() {
 
     const eraserToggle = document.querySelector('#eraser-toggle');
     eraserToggle.addEventListener('click', toggleEraser);
+}
+
+function setupMouseEventListeners() {
+    document.addEventListener('mousedown', () => mouseDown = true);
+    document.addEventListener('mouseup', () => mouseDown = false);
 }
 
 /**
@@ -139,7 +148,7 @@ function toggleEraser() {
 
 /**
  * Indicates which toggle is selected in the UI
- * @param {*} toggle the selected toggle
+ * @param {*} toggle - the selected toggle
  */
 function displayToggleSelection(toggle) {
     toggle.classList.add('selected-toggle');
@@ -160,8 +169,10 @@ function resetToggleSelections() {
  * If pen is down, color it black
  * If eraser is down, remove the color
  * Otherwise nothing
+ * @param {Event} e - the event that triggered this callback function
  */
-function color() {
+function color(e) {
+    if (e.type === 'mouseover' && !mouseDown) return;
     const square = this;
     switch (currentMode) {
         case MODES.Color:
