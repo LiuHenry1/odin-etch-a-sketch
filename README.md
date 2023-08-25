@@ -1,9 +1,8 @@
 # Etch A Sketch 
-The Odin Project: [Etch-a-Sketch](https://www.theodinproject.com/lessons/foundations-etch-a-sketch)\
 [View Site](https://liuhenry1.github.io/odin-etch-a-sketch/)
 
 ## Overview
-The fourth project in The Odin Project curriculum. Topics covered:
+The [fourth project](https://www.theodinproject.com/lessons/foundations-etch-a-sketch) in The Odin Project Foundation curriculum. Topics covered:
 <ul>
   <li>DOM</li>
   <li>More practice on Javascript</li>
